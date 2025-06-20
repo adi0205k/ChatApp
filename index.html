@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Chat Application</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <button class="mobile-nav-toggle" id="mobile-nav-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" id="theme-toggle" title="Toggle theme">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Authentication Modal -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <h2><i class="fas fa-comments"></i> Welcome to Chat App</h2>
+            <form id="auth-form">
+                <input type="text" id="username" placeholder="Choose a username" required>
+                <button type="submit">
+                    <i class="fas fa-sign-in-alt"></i> Join Chat
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Chat Interface -->
+    <div id="chat-container" class="hidden">
+        <div class="sidebar">
+            <div class="user-info">
+                <span id="current-user"><i class="fas fa-user"></i> <span>Guest</span></span>
+                <button id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+            <div class="rooms-section">
+                <h3><i class="fas fa-door-open"></i> Chat Rooms</h3>
+                <form id="create-room-form">
+                    <input type="text" id="new-room-name" placeholder="New room name">
+                    <button type="submit"><i class="fas fa-plus"></i> Create Room</button>
+                </form>
+                <ul id="rooms-list"></ul>
+            </div>
+        </div>
+        
+        <div class="chat-main">
+            <div class="chat-header">
+                <h2 id="current-room"><i class="fas fa-hashtag"></i> Select a Room</h2>
+            </div>
+            <div class="messages-container" id="messages">
+                <!-- Messages will be dynamically added here -->
+            </div>
+            <form id="message-form" class="message-form">
+                <div class="message-input-container">
+                    <input type="text" id="message-input" placeholder="Type your message..." disabled>
+                    <div class="formatting-tools">
+                        <button type="button" class="format-btn" data-format="bold" title="Bold">
+                            <i class="fas fa-bold"></i>
+                        </button>
+                        <button type="button" class="format-btn" data-format="italic" title="Italic">
+                            <i class="fas fa-italic"></i>
+                        </button>
+                        <button type="button" class="format-btn" data-format="link" title="Add Link">
+                            <i class="fas fa-link"></i>
+                        </button>
+                    </div>
+                </div>
+                <button type="submit" disabled>
+                    <i class="fas fa-paper-plane"></i> Send
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
